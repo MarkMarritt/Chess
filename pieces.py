@@ -21,7 +21,7 @@ class Piece:
                 if self.getPieceOn(square=square) != None:
                     return
         #add castling?
-            self.moveOnBoard(end)    
+        self.moveOnBoard(end)    
 
     def generatePath(self, end, moveType):
         """return a list of all coords piece passes thru"""
