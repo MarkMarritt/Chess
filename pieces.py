@@ -5,7 +5,7 @@ class Piece:
         self.position = postion # store as a numpy array (1 2) 
         self.type = type
         self.colour = colour
-        self.boardDict = boardDict # of form {[1,3] : "None", [1,2] : ("b", "k")}
+        self.boardDict = boardDict # of form {[1,3] : "None", [1,2] : piece obj}
     
     def move(self, end):
         moveType = self.defineMove(end)
@@ -13,7 +13,7 @@ class Piece:
         #check that a move is valid
         if moveType == "invalid":
             return
-        if endPiece == self.colour:
+        if endPiece.colour == self.colour:
             return
         if moveType != "lshap":
             path = self.generatePath(end, moveType=moveType)
@@ -46,7 +46,7 @@ class Piece:
             return "horz"
         elif (end - self.position)[0] == (end - self.position)[1]:
             return "diag"
-        elif abs(abs((end - self.position)[0]) - abs((end - self.position)[1])) == 1:
+        elif (abs((end - self.position)[0]) == 1 and abs((end - self.position)[1]) == 2) or (abs((end - self.position)[0]) == 2 and abs((end - self.position)[1]) == 1):
             return "lshap"
         else:
             return "invalid" # need to add castling and promotion etc
@@ -59,11 +59,11 @@ class Piece:
         if info == None:
             return None
         else:
-            return info[0]
+            return info
 
     def moveOnBoard(self, end):
         """change position on board"""
         self.boardDict[self.position] = None
         self.position = end
-        self.boardDict[self.position] = (self.colour, self.type)
+        self.boardDict[self.position] = self
     
