@@ -94,7 +94,7 @@ class Piece:
             return "diag"
         elif ((abs((end - self.position)[0]) == 1 and abs((end - self.position)[1]) == 2) or (abs((end - self.position)[0]) == 2 and abs((end - self.position)[1]) == 1)) and self.type == "knight":
             return "lshap"
-        elif end[0] == self.position[0] and abs(end[1] - self.position[1]) == 2 and self.type == "pawn" and self.onStart:
+        elif end[0] == self.position[0] and abs(end[1] - self.position[1]) == 2 and self.type == "pawn" and self.onStart and self.getPieceOn(end) == None:
             if ((end[1] > self.position[1]) and self.colour == "white") or ((end[1] < self.position[1]) and self.colour == "black"):
                 self.pawnDoubleLast = True
                 return "vert"
