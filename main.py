@@ -38,6 +38,7 @@ while running:
                     if promotion == None:
                         board = gameStates[-1]
                         gameStates[-1] = copy.deepcopy(board)
+                        moved = False
                     else:
                         board.highlightedPiece.type = promotion
                 
