@@ -116,9 +116,10 @@ def testCheckmate(board, turn):
                         continue
                     tBoard = deepcopy(board)
                     tPiece = deepcopy(piece)
-                    moved = tPiece.move((i, j), tBoard.dict, tBoard.move)
-                    if not kingCheck(turn, tBoard.dict)[0]:
-                        return False
+                    moved, _ = tPiece.move((i, j), tBoard.dict, tBoard.move)
+                    if moved:
+                        if not kingCheck(turn, tBoard.dict)[0]:
+                            return False
     return True
 
 def pawnPromote(screen):
