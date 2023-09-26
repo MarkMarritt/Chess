@@ -5,7 +5,7 @@ from copy import deepcopy
 
 class Piece:
     def __init__(self, postion, type, colour, boardDict):
-        self.position = np.array(postion) # store as a numpy array (1 2) 
+        self.position = np.array(postion) # store as a tuple (1 2) 
         self.type = type
         self.colour = colour
         self.boardDict = boardDict # of form {(1,3) : "None", (1,2) : piece obj}
@@ -14,6 +14,7 @@ class Piece:
         self.pawnDoubleLast = False
 
     def move(self, endSquare, boardDict, moveNo):
+        """move piece, returns if moved and updated dictionary"""
         self.pawnDoubleLast = False, self.boardDict
         self.boardDict = boardDict
         moveType = self.defineMove(endSquare, moveNo)
